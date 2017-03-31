@@ -32,5 +32,19 @@ public class UserController {
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		return "registration.jsf?faces-redirect=true";
 	}
+	
+	public String updateUser(){
+		System.out.println("Updating user: "+registrationUser);
+		String msg = "User updated succesfully";
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,msg,msg));
+		return "userDetails.jsf";
+	}
+	
+	public String deleteUser(){
+		System.out.println("Deleting user:"+registrationUser);
+		String msg = "User deleted Succesfully";
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,msg,msg));
+		return "userDetails.jsf";
+	}
 
 }

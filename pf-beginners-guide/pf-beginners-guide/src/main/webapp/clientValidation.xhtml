@@ -19,7 +19,8 @@
 				return;
 			}
 			if( emailReg.test( email ) ) {
-			   $(PrimeFaces.escapeClientId("userForm:emailMsg")).text("Valid Email");		
+			   //$(PrimeFaces.escapeClientId("userForm:emailMsg")).text("Valid Email");		
+			   $("#userForm\\:emailMsg").text("Valid Mail");
 			   $(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "ui-messages-info ui-widget ui-corner-all ui-messages-info-summary");		   
 			} else {
 				$(PrimeFaces.escapeClientId("userForm:emailMsg")).text("Invalid Email");
@@ -43,7 +44,7 @@
 					<p:outputLabel value="Email:" />
 					<p:inputText id="email"
 						value="#{userController.registrationUser.email}"
-						onchange="validateEMail();" />
+						onchange="validateEmail();" />
 					<p:message id="emailMsg" for="email" />
 				</h:panelGrid>
 			</p:panel>
