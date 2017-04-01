@@ -37,9 +37,6 @@
      <welcome-file>faces/main.xhtml</welcome-file>
    </welcome-file-list>
 	
-	<context-param>
-		<param-name>primefaces.SUBMIT</param-name>
-		<param-value>partial</param-value>
-	</context-param>
+	
 	
 </web-app>

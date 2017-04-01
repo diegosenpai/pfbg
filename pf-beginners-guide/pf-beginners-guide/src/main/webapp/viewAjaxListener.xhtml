@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+
+	<h:head>
+
+	</h:head>
+
+	<h:form id="registrationForm">
+		<h2>Updating specific view componentes without refreshing using
+			Primefaces Ajax Listener.</h2>
+		<p>As you type in the UserName input field it will validated and
+			adds error message if the UserName is already in use</p>
+		<p>
+			Try with <b>admin</b> or <b>test</b>
+		</p>
+		<p:panel header="Registration Form">
+			<h:panelGrid columns="3">
+				<p:outputLabel value="UserName" />
+				<p:inputText id="userName"
+					value="#{userController.registrationUser.userName}" required="true"
+					label="UserName">
+					<p:ajax event="keyup"
+						listener="#{userController.checkUserNamesExists()}"
+						update="userNameMsg" />
+				</p:inputText>
+				<p:message id="userNameMsg" for="userName" />
+				<p:outputLabel value="Password" />
+				<p:password id="password"
+					value="#{userController.registrationUser.password}" required="true"
+					label="password" />
+				<p:message id="passwordMsg" for="password" />
+				<p:outputLabel value="First Name" />
+				<p:inputText id="firstName" value="#{userController.registrationUser.userName}" required="true" label="FirsName" />
+				<p:message id="firstNameMsg" for="firstName" />
+				<p:commandButton value="Register" action="#{userController.register()}"
+					update="registrationForm" />				
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+
+</f:view>
+
+</html>

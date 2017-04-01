@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+	<h:head>
+		<title>Registration</title>
+	</h:head>
+	<h:body>
+		<h:form id="userDetailsForm">
+			<p:panel header="Registration Form" style="width:800px;">
+				<p:messages id="msgs" />
+				<h:panelGrid columns="3">
+					<p:outputLabel value="UserName:*" />
+					<p:inputText id="userName"
+						value="#{userController.registrationUser.userName}"
+						label="UserName" required="true">
+						<p:ajax event="blur" update="msgs" partialSubmit="true" listener="#{userController.checkUserNamesExists()}"/>
+					</p:inputText>
+					<p:message id="userNameMsg" for="userName" />
+					<p:outputLabel value="Password:*" />
+					<p:password id="password"
+						value="#{userController.registrationUser.password}"
+						label="Password" required="true">
+						<f:validateLength minimum="4" />
+						<p:ajax event="keyup" update="passwordMsg" />
+					</p:password>
+					<p:message id="passwordMsg" for="password" />
+					<p:outputLabel value="FirstName:*" />
+					<p:inputText id="firstName"
+						value="#{userController.registrationUser.firstName}"
+						label="FirstName" required="true">
+						<p:ajax event="keyup" update="firstNameMsg" />
+					</p:inputText>
+					<p:message id="firstNameMsg" for="firstName" />
+					<p:commandButton value="Update" update="userDetailsForm"
+						action="#{userController.updateUser()}" />
+					<p:commandButton value="Delete" update="userDetailsForm"
+						action="#{userController.deleteUser()}" process="@this,userName" partialSubmit="true" />
+					<p:outputLabel value="" />
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

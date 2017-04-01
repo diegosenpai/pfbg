@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+
+	<h:head>
+
+	</h:head>
+
+	<h:form id="loginForm">
+		<h2>Updating specific view componentes without refreshing the whole page.</h2>
+		<p:panel header="Login Form">
+			<h:panelGrid columns="2">
+				<p:outputLabel value="UserName" />
+				<p:inputText id="userName" value="#{userController.loginUser.userName}" />
+				<p:outputLabel value="Password"/>
+				<p:password  id="password" value="#{userController.loginUser.password}"/>
+				<p:commandButton value="Login" action="#{userController.login}" update="loginStatusMsg"/>
+				<p:commandButton value="Cancel" type="reset" />
+				<p:outputLabel value="#{userController.loginStatus}" id="loginStatusMsg"/>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+
+</f:view>
+
+</html>

@@ -12,9 +12,12 @@ import ec.com.orion.learn.pfbg.model.User;
 public class UserController {
 
 	private User registrationUser;
+	private User loginUser;
+	private String loginStatus;
 
 	public UserController() {
 		registrationUser = new User();
+		loginUser = new User();
 	}
 
 	public User getRegistrationUser() {
@@ -46,5 +49,34 @@ public class UserController {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,msg,msg));
 		return "userDetails.jsf";
 	}
+	
+	public void checkUserNamesExists(){
+		String userName = this.registrationUser.getUserName();
+		if("admin".equalsIgnoreCase(userName) || "test".equalsIgnoreCase(userName)){
+			String msg = "UserName ["+userName+"] already in use!";
+			FacesContext.getCurrentInstance().addMessage("registrationForm:userName", new FacesMessage(FacesMessage.SEVERITY_ERROR,msg,msg));
+		}
+	}
 
+	public User getLoginUser() {
+		return loginUser;
+	}
+
+	public void setLoginUser(User loginUser) {
+		this.loginUser = loginUser;
+	}
+
+	public String getLoginStatus() {
+		return loginStatus;
+	}
+
+	public void setLoginStatus(String loginStatus) {
+		this.loginStatus = loginStatus;
+	}
+
+	public String login(){
+		boolean validCredentials = "admin".equals(loginUser.getUserName()) || "test".equals(loginUser.getUserName());
+		this.loginStatus = validCredentials? "Login Succesfull" : "Login Failed";
+		return null;
+	}
 }
